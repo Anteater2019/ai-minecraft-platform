@@ -54,3 +54,16 @@ async def generate_addon(req: GenerateRequest):
             "Content-Disposition": f'attachment; filename="{mob_id}.mcaddon"',
         },
     )
+
+
+@app.post("/build-addon")
+async def build_addon(mob: MobData):
+    mob_id = sanitize_name(mob.name)
+    zip_buf = build_addon_zip(mob)
+    return StreamingResponse(
+        zip_buf,
+        media_type="application/zip",
+        headers={
+            "Content-Disposition": f'attachment; filename="{mob_id}.mcaddon"',
+        },
+    )

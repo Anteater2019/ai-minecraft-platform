@@ -6,14 +6,14 @@ class GenerateRequest(BaseModel):
 
 
 class LootItem(BaseModel):
-    item: str
-    min: int
-    max: int
+    item: str = "minecraft:bone"
+    min: int = 1
+    max: int = 1
 
 
 class MobData(BaseModel):
-    name: str
-    health: int
-    attack_damage: int
-    abilities: list[str]
-    loot: list[LootItem]
+    name: str = "Custom Mob"
+    health: int = 20
+    attack_damage: int = 5
+    abilities: list[str] = []
+    loot: list[LootItem] = []
